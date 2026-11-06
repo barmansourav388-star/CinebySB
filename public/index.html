@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909"><meta name="description" content="Watch movies on cinebySB.">
+  <title>cinebySB — Stream your picks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="cinebySB home"><span class="brand-mark">C</span><span>cineby<span class="brand-light">SB</span></span></a>
+    <nav><a class="nav-link active" href="/">Home</a><a class="nav-link" href="#library">Movies</a></nav>
+    <div class="top-actions"><button class="icon-btn" id="searchToggle" aria-label="Search">⌕</button><input id="searchInput" class="search-input" placeholder="Search titles..." hidden><button class="admin-open" id="adminOpen">Admin login</button></div>
+  </header>
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-line"></span> YOUR PERSONAL CINEMA</div><h1>Stories worth<br><em>staying in</em> for.</h1><p>A handpicked screen for the movies you love. Find your next watch and settle in.</p><div class="hero-buttons"><a class="primary-btn" href="#library"><span>▶</span> Explore movies</a><button class="secondary-btn" id="heroAdmin">＋ Upload a movie</button></div><div class="hero-meta"><span><i></i> OPEN FOR EVERYONE</span><span>·</span><span>YOUR MOVIE COLLECTION</span></div></div>
+      <div class="hero-art"><div class="poster-stack"><div class="poster-glow"></div><div class="poster-card poster-back"></div><div class="poster-card poster-front"><div class="poster-orb"></div><div class="poster-front-label"><small>THE NEXT GREAT WATCH</small><strong>YOUR<br>STORY<br>STARTS HERE.</strong><span>cinebySB ORIGINAL MOOD</span></div></div></div><div class="floating-note"><span class="play-dot">▶</span><span><b>Press play.</b><small>Your cinema awaits</small></span></div></div>
+    </section>
+    <section class="library-section" id="library"><div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE COLLECTION</div><h2>Explore <em>movies.</em></h2><p class="section-sub">Your next favourite is just one click away.</p></div><div class="count-pill" id="movieCount">0 TITLES</div></div>
+      <div id="movieGrid" class="movie-grid"><div class="empty-state"><div class="empty-icon">✳</div><h3>Your screen is ready.</h3><p>Movies added by the admin will show up here.</p><button class="secondary-btn" id="emptyUpload">＋ Add the first movie</button></div></div>
+    </section>
+    <footer><a class="brand footer-brand" href="/"><span class="brand-mark">C</span><span>cineby<span class="brand-light">SB</span></span></a><span>YOUR MOVIE SPACE. MADE TO BE SHARED.</span><span>© <span id="yearNow"></span> cinebySB</span></footer>
+  </main>
+  <div class="modal-backdrop" id="adminModal" hidden><section class="modal"><button class="modal-close" data-close aria-label="Close">×</button><div class="eyebrow"><span class="eyebrow-line"></span> CREATOR ACCESS</div><h2>Admin <em>studio.</em></h2><p class="modal-intro">Sign in to add and manage movies in your public library.</p><form id="loginForm"><label>Admin password<input type="password" id="adminPassword" placeholder="Enter your password" required autocomplete="current-password"></label><button class="primary-btn full-btn" type="submit">Continue <span>→</span></button><div class="form-error" id="loginError"></div></form></section></div>
+  <div class="modal-backdrop" id="uploadModal" hidden><section class="modal upload-modal"><button class="modal-close" data-close aria-label="Close">×</button><div class="eyebrow"><span class="eyebrow-line"></span> YOUR STUDIO</div><h2>Add a <em>movie.</em></h2><p class="modal-intro">Upload a video and publish it to the public collection.</p><form id="uploadForm" enctype="multipart/form-data"><div class="field-grid"><label>Movie title *<input name="title" maxlength="120" placeholder="e.g. Interstellar" required></label><label>Release year<input name="year" inputmode="numeric" maxlength="4" placeholder="2026"></label><label>Genre<input name="genre" maxlength="50" placeholder="Sci-fi, Drama..."></label><label>Duration<input name="duration" maxlength="30" placeholder="2h 49m"></label></div><label>Description<textarea name="description" rows="3" maxlength="1500" placeholder="A short description of the movie..."></textarea></label><label class="file-drop"><input type="file" name="video" accept=".mp4,.webm,.m4v,.mov,video/mp4,video/webm,video/quicktime" required><span class="file-symbol">⇧</span><b id="videoFileName">Choose movie file</b><small>MP4 or WebM recommended · up to configured server limit</small></label><label class="poster-picker"><span>Poster image (optional)</span><input type="file" name="poster" accept="image/jpeg,image/png,image/webp"></label><div class="upload-progress" id="uploadProgress" hidden><div><span id="progressLabel">Uploading...</span><b id="progressPercent">0%</b></div><div class="progress-track"><i id="progressBar"></i></div></div><button class="primary-btn full-btn" type="submit" id="publishBtn">Publish movie <span>→</span></button><div class="form-error" id="uploadError"></div><div class="success-box" id="uploadSuccess" hidden></div></form><div class="admin-list-wrap"><h3>Your published movies</h3><div id="adminMovieList" class="admin-movie-list"></div></div><button class="text-btn" id="logoutBtn">Sign out of admin</button></section></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body></html>
